@@ -30,9 +30,19 @@ public class ListaDirectoare {
 
     public void adaugaDirector(Director director) {
         if(cautaDirector(director.getDenumire()) != null) {
-            System.out.println("Exista un director cu acest nume");
+            System.out.println("Exista deja un director cu acest nume");
         } else {
             listaDirectoare.add(director);
+        }
+    }
+
+    public void stergereDirector(String denumire) {
+        if(cautaDirector(denumire) == null) {
+            System.out.println("Directorul pe care incercati sa-l stergeti nu exista.");
+        } else {
+            Director director = cautaDirector(denumire);
+            listaDirectoare.remove(director);
+            System.out.println("Directorul a fost sters cu succes.");
         }
     }
 }
