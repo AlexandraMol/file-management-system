@@ -8,6 +8,10 @@ public class Director implements Serializable {
     private String denumire;
     private String locatie = "C:\\Users\\Alexandra\\Desktop\\";
 
+    public Director(String denumire) {
+        this.denumire = denumire;
+    }
+
     public ListaFisiere getListaFisiere() {
         return listaFisiere;
     }

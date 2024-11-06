@@ -10,7 +10,7 @@ public class ListaDirectoare {
     }
     public void afiseazaDirectoare() {
         if(this.listaDirectoare.isEmpty()) {
-            System.out.println("Nu exista niciun director.");
+            System.out.println("Nu exista directoare create in aplicatie.");
         } else {
             System.out.println("Lista de directoare:");
             for(Director dir:listaDirectoare) {

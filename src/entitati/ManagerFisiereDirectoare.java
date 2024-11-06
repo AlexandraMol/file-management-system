@@ -5,11 +5,19 @@ import java.io.*;
 public class ManagerFisiereDirectoare {
     // asta ar putea fi un singletone
     public ListaDirectoare listaDirectoare;
-    public ListaFisiere listaFisiere;
 
     public ManagerFisiereDirectoare() {
-        listaFisiere = new ListaFisiere();
         listaDirectoare = new ListaDirectoare();
+    }
+
+    public String cautaLocatieFisier(String denumire) {
+        for(Director director : listaDirectoare.listaDirectoare) {
+            Fisier fisierCautat = director.getListaFisiere().cautaFisier(denumire);
+            if(fisierCautat != null) {
+                return fisierCautat.getLocatie();
+            }
+        }
+        return null;
     }
 
     public void salvareFisier(File fisier) {
@@ -19,7 +27,7 @@ public class ManagerFisiereDirectoare {
     public void restaurareFisier(File fisier) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fisier));
         if (br.readLine() != null) {
-            System.out.println("Fisierul nu exista!");
+            // System.out.println("Fisierul nu exista!");
         }
     }
     // metoda de save si restore from file;

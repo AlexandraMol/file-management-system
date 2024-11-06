@@ -1,20 +1,33 @@
 package entitati;
 import entitati.exceptii.ExceptiiFisiere;
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Fisier implements Serializable {
     private String denumire;
     private TipFisier tipFisier;
-    private String extensie;
+    private String extensie = "";
     private int dimensiune; // in KB
-    private String locatie = "C:\\Users\\Alexandra\\Desktop\\";
+    private String locatie;
+    private String directorParinte;
 
-    public Fisier(String denumire, TipFisier tipFisier) throws ExceptiiFisiere {
+    public Fisier(String denumire, String directorParinte) throws ExceptiiFisiere {
         this.denumire = denumire;
-        this.tipFisier = tipFisier;
         this.extensie = obtinereExtensie(denumire);
+        this.tipFisier = obtinereTipFisier(this.extensie.toLowerCase());
         this.dimensiune = this.generareDimensiuneFisier();
+        this.directorParinte = directorParinte;
+        this.locatie = calculareLocatie(directorParinte);
     }
+
+    private String calculareLocatie(String directorParinte) {
+        String locatie = "C:\\Users\\Alexandra\\Desktop\\";
+        if(directorParinte != null) {
+             locatie += directorParinte + "\\";
+        }
+        return locatie;
+    }
+
     // se calculeaza in functie de numele fisierului
     private String obtinereExtensie(String denumire) throws ExceptiiFisiere {
         String extensie = "";
@@ -59,6 +72,21 @@ public class Fisier implements Serializable {
         return dimensiune;
     }
 
+    // sa extragem tipul in functie de extensie;
+    private TipFisier obtinereTipFisier(String extensie){
+        // String[] extensiiAcceptate = {"jpg","png","mp3","wav","mp4","mov"};
+        if(Objects.equals(extensie, "jpg") || Objects.equals(extensie, "png")) {
+            return TipFisier.IMAGINE;
+        }
+        if(Objects.equals(extensie, "mp3") || Objects.equals(extensie, "wav")) {
+            return  TipFisier.AUDIO;
+        }
+        if(Objects.equals(extensie, "mp4") || Objects.equals(extensie, "mov")) {
+            return TipFisier.VIDEO;
+        }
+        return TipFisier.CORUPT;
+    }
+
     public String getDenumire() {
         return denumire;
     }
@@ -91,6 +119,14 @@ public class Fisier implements Serializable {
         this.locatie = locatie;
     }
 
+    public String getDirectorParinte() {
+        return directorParinte;
+    }
+
+    public void setDirectorParinte(String directorParinte) {
+        this.directorParinte = directorParinte;
+    }
+
     @Override
     public String toString() {
         return "Fisier{" +
@@ -99,6 +135,7 @@ public class Fisier implements Serializable {
                 ", extensie='" + extensie + '\'' +
                 ", dimensiune=" + dimensiune + "KB" +
                 ", locatie='" + locatie + '\'' +
+                ", directorParinte='" + directorParinte + '\'' +
                 '}';
     }
 }

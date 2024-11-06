@@ -12,26 +12,31 @@ public class ListaFisiere {
         this.listaFisiere = new ArrayList<Fisier>();
     }
 
-    public void adaugaFisier(Fisier fisier) throws ExceptiiFisiere {
-//        if() numele exista in file nu e voie
+    public Fisier cautaFisier(String denumire) throws ExceptiiFisiere{
         for(Fisier f : listaFisiere) {
-            if(Objects.equals(f.getDenumire(), fisier.getDenumire())) {
-                throw new ExceptiiFisiere("In director exista un fisier cu aceasta denumire");
+            if(Objects.equals(f.getDenumire(), denumire)) {
+                return f;
             }
         }
-        listaFisiere.add(fisier);
+        return null;
+    }
+
+    public void adaugaFisier(Fisier fisier){
+//        if() numele exista in file nu e voie
+        if(this.cautaFisier(fisier.getDenumire()) == null) {
+            listaFisiere.add(fisier);
+        }
     }
 
     public void stergeFisier(String denumire) {
         // daca nu exista fisierul, eroare
-        for(Fisier f : listaFisiere) {
-            if(Objects.equals(f.getDenumire(), denumire)) {
-                listaFisiere.remove(f);
-                System.out.println("Fisierul a fost sters cu succes");
-                return;
-            }
+        Fisier fisierDeSters = cautaFisier(denumire);
+        if(fisierDeSters != null) {
+            System.out.println("Fisierul a fost sters cu succes");
+            listaFisiere.remove(fisierDeSters);
+        } else {
+            System.out.println("Fisierul cu aceasta denumire nu a fost gasit");
         }
-        System.out.println("Fisierul cu aceasta denumire nu a fost gasit");
     }
 
     public void afiseazaListaFisiere() {
