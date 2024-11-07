@@ -10,6 +10,7 @@ public class Director implements Serializable {
 
     public Director(String denumire) {
         this.denumire = denumire;
+        this.locatie += denumire;
     }
 
     public ListaFisiere getListaFisiere() {
@@ -33,7 +34,7 @@ public class Director implements Serializable {
     }
 
     public void setLocatie(String locatie) {
-        this.locatie = locatie;
+        this.locatie = locatie + this.denumire;
     }
 
     public void afiseazaDirector() {

@@ -1,0 +1,5 @@
+Fisier{denumire='text.jpg', tipFisier=IMAGINE, extensie='jpg', dimensiune=2484KB, locatie='C:\Users\Alexandra\Desktop\dosar\text.jpg', directorParinte='dosar'}
+Fisier{denumire='textf.jpg', tipFisier=IMAGINE, extensie='jpg', dimensiune=4811KB, locatie='C:\Users\Alexandra\Desktop\dosar\textf.jpg', directorParinte='dosar'}
+Fisier{denumire='tex1.jpg', tipFisier=IMAGINE, extensie='jpg', dimensiune=544KB, locatie='C:\Users\Alexandra\Desktop\dosar\tex1.jpg', directorParinte='dosar'}
+Fisier{denumire='text.png', tipFisier=IMAGINE, extensie='png', dimensiune=4983KB, locatie='C:\Users\Alexandra\Desktop\dosar3\text.png', directorParinte='dosar3'}
+Fisier{denumire='text.png', tipFisier=IMAGINE, extensie='png', dimensiune=2687KB, locatie='C:\Users\Alexandra\Desktop\dosar2\text.png', directorParinte='dosar2'}

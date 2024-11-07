@@ -1,5 +1,7 @@
 package entitati;
 
+import entitati.exceptii.ExceptiiDenumiri;
+
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -12,21 +14,23 @@ public final class Meniu {
 
         while(!inputValid) {
            inputIntrodus = input.nextLine();
-            if(Objects.equals(inputIntrodus, "")) {
-                System.out.println("Numele fisierului nu trebuie sa fie gol");
-                System.out.println("Introduceti numele fisierlui");
-            } else {
-                inputValid = true;
-            }
+           try {
+               if(Objects.equals(inputIntrodus, "")) {
+                   throw new ExceptiiDenumiri("Numele fisierului nu trebuie sa fie gol. Introduceti un nume valid");
+               } else {
+                   inputValid = true;
+               }
+           } catch (ExceptiiDenumiri e) {
+              System.out.println(e.getMessage());
+           }
         }
-
         return inputIntrodus;
     }
 
     public String getMesajIntroductiv() {
         return "Bun venit in aplicatia de gestiune a fisierelor multimedia!";
     }
-    // 2 as putea modifica cu cautarea unui fisier global;
+
     public String getMeniuGeneral() {
         return "\nSelectati o instructiune din meniu de la 1 la 7: \n" +
                 "1. Afisarea listei de directoare (locatii) existente \n" +
@@ -43,8 +47,8 @@ public final class Meniu {
                 "1. Cautarea unui fisier din directorul curent \n" +
                 "2. Adaugarea unui fisier in acest director \n" +
                 "3. Stergerea unui fisier din folder \n" +
-                "4. Revenirea la meniul principal \n" +
-                "5. Iesire din aplicatie \n";
+                "4. Revenirea la meniul principal \n";
+
     }
 
     public String getMesajDeIesire() {
@@ -53,5 +57,9 @@ public final class Meniu {
 
     public String getOptiuneInexistenta() {
         return "Eroare! Aceasta instructiune nu exista.";
+    }
+
+    public String getMesajGenerareRaport() {
+        return "Raportul dumneavoastra a fost generat cu succes";
     }
 }

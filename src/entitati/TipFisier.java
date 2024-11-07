@@ -1,5 +1,5 @@
 package entitati;
 
 public enum TipFisier {
-    AUDIO, IMAGINE, VIDEO, CORUPT
+    AUDIO, IMAGINE, VIDEO
 }

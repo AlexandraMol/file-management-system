@@ -11,7 +11,7 @@ public class Fisier implements Serializable {
     private String locatie;
     private String directorParinte;
 
-    public Fisier(String denumire, String directorParinte) throws ExceptiiFisiere {
+    public Fisier(String denumire, String directorParinte) {
         this.denumire = denumire;
         this.extensie = obtinereExtensie(denumire);
         this.tipFisier = obtinereTipFisier(this.extensie.toLowerCase());
@@ -25,6 +25,7 @@ public class Fisier implements Serializable {
         if(directorParinte != null) {
              locatie += directorParinte + "\\";
         }
+        locatie += this.denumire;
         return locatie;
     }
 
@@ -74,7 +75,6 @@ public class Fisier implements Serializable {
 
     // sa extragem tipul in functie de extensie;
     private TipFisier obtinereTipFisier(String extensie){
-        // String[] extensiiAcceptate = {"jpg","png","mp3","wav","mp4","mov"};
         if(Objects.equals(extensie, "jpg") || Objects.equals(extensie, "png")) {
             return TipFisier.IMAGINE;
         }
@@ -84,7 +84,7 @@ public class Fisier implements Serializable {
         if(Objects.equals(extensie, "mp4") || Objects.equals(extensie, "mov")) {
             return TipFisier.VIDEO;
         }
-        return TipFisier.CORUPT;
+        return null;
     }
 
     public String getDenumire() {

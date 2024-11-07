@@ -3,14 +3,12 @@ import entitati.exceptii.ExceptiiFisiere;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) throws ExceptiiFisiere {
+    public static void main(String[] args) {
         Meniu meniu = new Meniu();
         Scanner scanner = new Scanner(System.in);
         int selectieMeniuGeneral = 0;
@@ -18,32 +16,16 @@ public class Main {
         String directorSpecificat;
         ManagerFisiereDirectoare managerFisiereDirectoare = new ManagerFisiereDirectoare();
 
-        Fisier f = new Fisier("test1.wav", "dosar");
-        // Fisier f2 = new Fisier("test1.wav", TipFisier.AUDIO);
-        ListaFisiere listaFisiere = new ListaFisiere();
-        listaFisiere.adaugaFisier(f);
+        // citire fisier
+        File fisierDeIntrare = new File("date.txt");
+        try {
+            fisierDeIntrare.createNewFile();
+            managerFisiereDirectoare.restaurareFisier(fisierDeIntrare);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-
-        Fisier f1 = new Fisier("test1.jpg", "");
-        listaFisiere.adaugaFisier(f1);
-
-
-        Director director = new Director("dosar");
-        director.setDenumire("dosar");
-        Director director3 = new Director("dosar2");
-        director3.setDenumire("dosar2");
-        director.setListaFisiere(listaFisiere);
-
-        System.out.println("-------------------");
-        ListaDirectoare listaDirectoare = new ListaDirectoare();
-        listaDirectoare.adaugaDirector(director);
-        listaDirectoare.adaugaDirector(director3);
-
-        managerFisiereDirectoare.listaDirectoare = listaDirectoare;
-
-        managerFisiereDirectoare.listaDirectoare.cautaDirector("dosar").afiseazaDirector();
         System.out.println(meniu.getMesajIntroductiv());
-
         do {
             System.out.println(meniu.getMeniuGeneral());
             boolean inputValid = false;
@@ -116,7 +98,6 @@ public class Main {
                         switch (selectieMeniuDirector) {
 
                             case 1:
-                                numeIntrodus ="";
                                 System.out.println("Introduceti numele fisierului pe care doriti sa-l cautati.");
                                 numeIntrodus = meniu.citesteString(scanner);
                                 Fisier fisierCautat = directorGasit.getListaFisiere().cautaFisier(numeIntrodus);
@@ -127,12 +108,10 @@ public class Main {
                                 }
                                 break;
                             case 2:
-                                numeIntrodus = "";
                                 do {
                                     System.out.println("Introduceti numele fisierului, acesta nu trebuie sa existe in director");
                                     numeIntrodus = meniu.citesteString(scanner);
                                 } while(directorGasit.getListaFisiere().cautaFisier(numeIntrodus) != null);
-                                // de refactorizat exceptia cand nu e o extensie ok
                                 try {
                                     Fisier fisier = new Fisier(numeIntrodus, directorGasit.getDenumire());
                                     System.out.println(fisier);
@@ -142,16 +121,11 @@ public class Main {
                                 }
                                 break;
                             case 3:
-                                numeIntrodus = "";
                                 do {
                                     System.out.println("Introduceti numele fisierului pe care vreti sa-l stergeti.");
                                     numeIntrodus = meniu.citesteString(scanner);
                                 } while(directorGasit.getListaFisiere().cautaFisier(numeIntrodus) == null);
                                 directorGasit.getListaFisiere().stergeFisier(numeIntrodus);
-                                break;
-                            case 5:
-                                // salvarea in fisier
-                                System.out.println(meniu.getMesajDeIesire());
                                 break;
                         }
                     } while(selectieMeniuDirector != 4);
@@ -169,31 +143,27 @@ public class Main {
                         directorSpecificat = scanner.nextLine();
                     } while(managerFisiereDirectoare.listaDirectoare.cautaDirector(directorSpecificat) == null);
                     managerFisiereDirectoare.listaDirectoare.stergereDirector(directorSpecificat);
-                    System.out.println("Directorul s-a realizat cu succes.");
+                    System.out.println("Directorul s-a sters cu succes.");
                     break;
                 case 6:
-                    // de gandit statistici
+                    try {
+                        managerFisiereDirectoare.genereazaRaport();
+                        managerFisiereDirectoare.salvareFisier(fisierDeIntrare);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("Raportul dumneavoastra a fost generat cu succes!");
                     break;
                 case 7:
-                    // salvare in fisier
                     System.out.println(meniu.getMesajDeIesire());
+                    try {
+                        managerFisiereDirectoare.salvareFisier(fisierDeIntrare);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
             }
-        } while(selectieMeniuGeneral != 7);
-        // citire fisier
-        File file = new File("date.txt");
-
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        try {
-            managerFisiereDirectoare.restaurareFisier(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        } while(selectieMeniuGeneral != 7 && selectieMeniuGeneral != 6);
+        managerFisiereDirectoare.salveazaInformatiiFisiere();
     }
 }
