@@ -1,4 +1,4 @@
-package entitati;
+package entitati.clase;
 
 import entitati.exceptii.ExceptiiFisiere;
 
@@ -12,7 +12,12 @@ public class ListaFisiere {
         this.listaFisiere = new ArrayList<Fisier>();
     }
 
-    public Fisier cautaFisier(String denumire) throws ExceptiiFisiere{
+    /**
+     * Verifica existenta unui fisier pe baza numelui
+     * @param denumire fisierului de cautat
+     * @return fisierul gasit si daca acesta nu exista, null
+     */
+    public Fisier cautaFisier(String denumire) {
         for(Fisier f : listaFisiere) {
             if(Objects.equals(f.getDenumire(), denumire)) {
                 return f;
@@ -21,15 +26,21 @@ public class ListaFisiere {
         return null;
     }
 
+    /**
+     * Adauga un fisier in lista de fisiere daca acesta nu exista
+     * @param fisier
+     */
     public void adaugaFisier(Fisier fisier){
-//        if() numele exista in file nu e voie
         if(this.cautaFisier(fisier.getDenumire()) == null) {
             listaFisiere.add(fisier);
         }
     }
 
+    /**
+     * Sterge un fisier din lista de fisiere daca acesta exista
+     * @param denumire
+     */
     public void stergeFisier(String denumire) {
-        // daca nu exista fisierul, eroare
         Fisier fisierDeSters = cautaFisier(denumire);
         if(fisierDeSters != null) {
             System.out.println("Fisierul a fost sters cu succes");
@@ -39,6 +50,10 @@ public class ListaFisiere {
         }
     }
 
+    /**
+     * Afiseaza numele fisierelor create in directorul parinte. Daca nu exista fisiere
+     * se va afisa un mesaj sugestiv
+     */
     public void afiseazaListaFisiere() {
        if(this.listaFisiere.isEmpty()) {
            System.out.println("Directorul nu contine niciun fisier");

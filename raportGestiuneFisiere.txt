@@ -1,11 +1,11 @@
-In aplicatie exista create in total 2 directoare si 5 fisiere
-Numarul fisierelor audio: 0
-Numarul fisierelor de tip imagine: 5
-Numarul fisierelor video: 0
-Fisierele ocupa in total: 15509
-Fisierele audio ocupa: 0
-Fisierele de tip imagine ocupa: 15509
-Fisierele video ocupa: 0
-Fisierul audio cu dimensiunea cea mai mare de 0KB: 
-Fisierul de tip imagine cu dimensiunea cea mai mare de 4983KB: text.png
-Fisierul video cu dimensiunea cea mai mare de 0KB: 
+In aplicatie exista create in total 5 directoare si 8 fisiere
+Numarul fisierelor audio: 2
+Numarul fisierelor de tip imagine: 4
+Numarul fisierelor video: 2
+Fisierele ocupa in total: 123541
+Fisierele audio ocupa: 35600
+Fisierele de tip imagine ocupa: 13672
+Fisierele video ocupa: 74269
+Fisierul audio cu dimensiunea cea mai mare de 18056KB: text.wav
+Fisierul de tip imagine cu dimensiunea cea mai mare de 4331KB: text.png
+Fisierul video cu dimensiunea cea mai mare de 70996KB: tex1.mov

@@ -1,13 +1,20 @@
-package entitati;
+package entitati.clase;
 
 import entitati.exceptii.ExceptiiDenumiri;
 
 import java.util.Objects;
 import java.util.Scanner;
 
-// meniul si mesajele sale
+/**
+ * Clasa ce contine mesajele meniului aplicatiei cat si validatori de input
+ */
 public final class Meniu {
 
+    /**
+     * Metoda ce valideaza input-ul dat de la tastatura de catre utilizator
+     * @param input
+     * @return input-ul valid scris de utilizator
+     */
     public String citesteString(Scanner input) {
         String inputIntrodus = "";
         boolean inputValid = false;

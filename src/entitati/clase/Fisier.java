@@ -1,13 +1,16 @@
-package entitati;
+package entitati.clase;
 import entitati.exceptii.ExceptiiFisiere;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Clasa ce stocheaza informatii despre fisierele multimedia.
+ */
 public class Fisier implements Serializable {
     private String denumire;
     private TipFisier tipFisier;
     private String extensie = "";
-    private int dimensiune; // in KB
+    private int dimensiune;
     private String locatie;
     private String directorParinte;
 
@@ -20,6 +23,11 @@ public class Fisier implements Serializable {
         this.locatie = calculareLocatie(directorParinte);
     }
 
+    /**
+     * Calculeaza path-ul fisierului in functie de existenta unui director parinte, locatia default fiind pe Desktop
+     * @param directorParinte
+     * @return locatia in care fisierul a fost creat
+     */
     private String calculareLocatie(String directorParinte) {
         String locatie = "C:\\Users\\Alexandra\\Desktop\\";
         if(directorParinte != null) {
@@ -29,7 +37,12 @@ public class Fisier implements Serializable {
         return locatie;
     }
 
-    // se calculeaza in functie de numele fisierului
+    /**
+     * Se extrage extensia fisierului din denumire, incadrand fisierul intr-o categorie
+     * @param denumire
+     * @return extensia fisierului
+     * @throws ExceptiiFisiere daca denumirea fisierului nu are extensie sau nu se afla intr-o categorie de extensii acceptate
+     */
     private String obtinereExtensie(String denumire) throws ExceptiiFisiere {
         String extensie = "";
         String[] extensiiAcceptate = {"jpg","png","mp3","wav","mp4","mov"};
@@ -47,16 +60,19 @@ public class Fisier implements Serializable {
                 break;
             }
         }
-        // if(extensie) nu e in vectorul de extensii acceptate
+
         if(ok == 0) {
             throw new ExceptiiFisiere("Fisierul dumneavoastra nu are o extensie potrivita");
         }
         return extensie;
     }
 
-    // generare random a dimensiunii unui fisier in functie de tipul de fisier;
+    /**
+     *
+     * @return dimensiunea fisierului creat in functie de categoria in care se afla
+     */
     private int generareDimensiuneFisier() {
-        int dimensiune = 0; // fisier corupt
+        int dimensiune = 0;
         switch (this.tipFisier) {
             case TipFisier.IMAGINE:
                 dimensiune = (int) ((Math.random() * (6000 - 250)) + 250);
@@ -68,12 +84,16 @@ public class Fisier implements Serializable {
                 dimensiune = (int) ((Math.random() * (85000 - 250)) + 250);
             break;
             default:
-                throw new IllegalStateException("Nu se poate calcula dimensiunea pentru acest tip de fisier " + this.tipFisier);
+                System.out.println("Nu se poate calcula dimensiunea pentru acest tip de fisier " + this.tipFisier);
         }
         return dimensiune;
     }
 
-    // sa extragem tipul in functie de extensie;
+    /**
+     * Incadreaza fisierul intr-o categorie in functie de extensie.
+     * @param extensie
+     * @return categoria din care face parte fisierul. Daca extensia nu este una acceptata se returneaza null.
+     */
     private TipFisier obtinereTipFisier(String extensie){
         if(Objects.equals(extensie, "jpg") || Objects.equals(extensie, "png")) {
             return TipFisier.IMAGINE;
@@ -91,20 +111,8 @@ public class Fisier implements Serializable {
         return denumire;
     }
 
-    public void setDenumire(String denumire) {
-        this.denumire = denumire; // cand setez denumirea sa setez si extensia
-    }
-
     public TipFisier getTipFisier() {
         return tipFisier;
-    }
-
-    public void setTipFisier(TipFisier tipFisier) {
-        this.tipFisier = tipFisier;
-    }
-
-    public String getExtensie() {
-        return extensie;
     }
 
     public int getDimensiune() {
@@ -113,18 +121,6 @@ public class Fisier implements Serializable {
 
     public String getLocatie() {
         return locatie;
-    }
-
-    public void setLocatie(String locatie) {
-        this.locatie = locatie;
-    }
-
-    public String getDirectorParinte() {
-        return directorParinte;
-    }
-
-    public void setDirectorParinte(String directorParinte) {
-        this.directorParinte = directorParinte;
     }
 
     @Override

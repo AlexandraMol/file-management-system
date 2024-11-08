@@ -1,8 +1,12 @@
-package entitati;
+package entitati.clase;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Clasa ce stocheaza informatii despre un director si implicit a fisierelor din directorul respectiv.
+ * Locatia tuturor directoarelor este pe Desktop.
+ */
 public class Director implements Serializable {
     private ListaFisiere listaFisiere = new ListaFisiere();
     private String denumire;
@@ -17,24 +21,8 @@ public class Director implements Serializable {
         return listaFisiere;
     }
 
-    public void setListaFisiere(ListaFisiere listaFisiere) {
-        this.listaFisiere = listaFisiere;
-    }
-
     public String getDenumire() {
         return denumire;
-    }
-
-    public void setDenumire(String denumire) {
-        this.denumire = denumire;
-    }
-
-    public String getLocatie() {
-        return locatie;
-    }
-
-    public void setLocatie(String locatie) {
-        this.locatie = locatie + this.denumire;
     }
 
     public void afiseazaDirector() {
@@ -43,6 +31,11 @@ public class Director implements Serializable {
         listaFisiere.afiseazaListaFisiere();
     }
 
+    /**
+     * Metoda ce verifica daca directoarele comparate sunt diferite in functie de nume
+     * @param o director
+     * @return true daca directoarele contin acelasi nume
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

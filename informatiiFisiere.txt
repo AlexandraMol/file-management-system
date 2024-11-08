@@ -1,5 +1,8 @@
-Fisier{denumire='text.jpg', tipFisier=IMAGINE, extensie='jpg', dimensiune=2484KB, locatie='C:\Users\Alexandra\Desktop\dosar\text.jpg', directorParinte='dosar'}
-Fisier{denumire='textf.jpg', tipFisier=IMAGINE, extensie='jpg', dimensiune=4811KB, locatie='C:\Users\Alexandra\Desktop\dosar\textf.jpg', directorParinte='dosar'}
-Fisier{denumire='tex1.jpg', tipFisier=IMAGINE, extensie='jpg', dimensiune=544KB, locatie='C:\Users\Alexandra\Desktop\dosar\tex1.jpg', directorParinte='dosar'}
-Fisier{denumire='text.png', tipFisier=IMAGINE, extensie='png', dimensiune=4983KB, locatie='C:\Users\Alexandra\Desktop\dosar3\text.png', directorParinte='dosar3'}
-Fisier{denumire='text.png', tipFisier=IMAGINE, extensie='png', dimensiune=2687KB, locatie='C:\Users\Alexandra\Desktop\dosar2\text.png', directorParinte='dosar2'}
+Fisier{denumire='text.png', tipFisier=IMAGINE, extensie='png', dimensiune=4331KB, locatie='C:\Users\Alexandra\Desktop\dosar5\text.png', directorParinte='dosar5'}
+Fisier{denumire='text.jpg', tipFisier=IMAGINE, extensie='jpg', dimensiune=3234KB, locatie='C:\Users\Alexandra\Desktop\dosar\text.jpg', directorParinte='dosar'}
+Fisier{denumire='text3.jpg', tipFisier=IMAGINE, extensie='jpg', dimensiune=1850KB, locatie='C:\Users\Alexandra\Desktop\dosar\text3.jpg', directorParinte='dosar'}
+Fisier{denumire='tex1.mp3', tipFisier=AUDIO, extensie='mp3', dimensiune=17544KB, locatie='C:\Users\Alexandra\Desktop\dosar\tex1.mp3', directorParinte='dosar'}
+Fisier{denumire='tex1.mov', tipFisier=VIDEO, extensie='mov', dimensiune=70996KB, locatie='C:\Users\Alexandra\Desktop\dosar\tex1.mov', directorParinte='dosar'}
+Fisier{denumire='text.png', tipFisier=IMAGINE, extensie='png', dimensiune=4257KB, locatie='C:\Users\Alexandra\Desktop\dosar3\text.png', directorParinte='dosar3'}
+Fisier{denumire='text.mp4', tipFisier=VIDEO, extensie='mp4', dimensiune=3273KB, locatie='C:\Users\Alexandra\Desktop\dosar3\text.mp4', directorParinte='dosar3'}
+Fisier{denumire='text.wav', tipFisier=AUDIO, extensie='wav', dimensiune=18056KB, locatie='C:\Users\Alexandra\Desktop\dosar2\text.wav', directorParinte='dosar2'}

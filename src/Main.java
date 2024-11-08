@@ -1,8 +1,12 @@
-import entitati.*;
+import entitati.clase.Director;
+import entitati.clase.Fisier;
+import entitati.clase.ManagerFisiereDirectoare;
+import entitati.clase.Meniu;
 import entitati.exceptii.ExceptiiFisiere;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -16,7 +20,7 @@ public class Main {
         String directorSpecificat;
         ManagerFisiereDirectoare managerFisiereDirectoare = new ManagerFisiereDirectoare();
 
-        // citire fisier
+
         File fisierDeIntrare = new File("date.txt");
         try {
             fisierDeIntrare.createNewFile();
@@ -54,11 +58,14 @@ public class Main {
                 case 2:
                     System.out.println("Scrieti numele fisierului pe care vreti sa-l cautati");
                     directorSpecificat = scanner.nextLine();
-                    String locatieFisierCautat = managerFisiereDirectoare.cautaLocatieFisier(directorSpecificat);
-                    if(locatieFisierCautat == null) {
+                    String[] locatieFisierCautat = managerFisiereDirectoare.cautaLocatieFisier(directorSpecificat);
+                    if(Objects.equals(locatieFisierCautat, null)) {
                         System.out.println("Fisierul pe care il cautati nu exista");
                     } else {
-                        System.out.println("Fisierul se afla la locatia: " + locatieFisierCautat);
+                        System.out.println("Fisierul se afla in urmatoarele fisiere: ");
+                        for(String locatie : locatieFisierCautat) {
+                            System.out.println(locatie);
+                        }
                     }
                     break;
                 case 3:
@@ -72,7 +79,6 @@ public class Main {
                         System.out.println("Directorul cautat nu exista!");
                         break;
                     }
-                    /// operatiile ptr files
                     do {
                         System.out.println(meniu.getMeniuFisiereDinDirector());
                         boolean inputValidDirector = false;
@@ -90,7 +96,7 @@ public class Main {
 
                         scanner.nextLine();
 
-                        if(selectieMeniuDirector < 1 || selectieMeniuDirector > 7) {
+                        if(selectieMeniuDirector < 1 || selectieMeniuDirector > 5) {
                             System.out.println(meniu.getOptiuneInexistenta());
 
                         }
@@ -124,6 +130,9 @@ public class Main {
                                 do {
                                     System.out.println("Introduceti numele fisierului pe care vreti sa-l stergeti.");
                                     numeIntrodus = meniu.citesteString(scanner);
+                                    if(directorGasit.getListaFisiere().cautaFisier(numeIntrodus) == null) {
+                                        System.out.println("Fisierul pe care vreti sa-l stergeti nu exista!");
+                                    }
                                 } while(directorGasit.getListaFisiere().cautaFisier(numeIntrodus) == null);
                                 directorGasit.getListaFisiere().stergeFisier(numeIntrodus);
                                 break;
@@ -153,6 +162,7 @@ public class Main {
                         e.printStackTrace();
                     }
                     System.out.println("Raportul dumneavoastra a fost generat cu succes!");
+                    System.out.println(meniu.getMesajDeIesire());
                     break;
                 case 7:
                     System.out.println(meniu.getMesajDeIesire());
